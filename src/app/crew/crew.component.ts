@@ -27,16 +27,16 @@ export class CrewComponent implements OnInit {
   // Code the 'addCrewMember' function here:
   addCrewMember (candidate:object) {
     if (this.crew.includes(candidate)) {
-      if (this.crew.length < 3) {
-        this.crew.push(candidate);
+      this.inCrew=true;
+      }else{
+      this.inCrew=false;
       }
-    }else{
-      for( var i = 0; i < this.crew.length; i++){ 
-        if ( this.crew[i] === candidate) { 
-            this.crew.splice(i, 1); 
-        }
-      }
+    if (this.inCrew) {
+      let index = this.crew.indexOf(candidate);
+      this.crew.splice(index, 1);
+      }else if (!this.inCrew && this.crew.length<3){
+      this.crew.push(candidate);
+      } 
     }
   }
 
-}
